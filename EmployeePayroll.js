@@ -1,8 +1,25 @@
-const salary = document.querySelector("#salary");
-const output = document.querySelector(".salary-output");
-salary.oninput = function() {
+window.addEventListener('DOMContentLoaded', (event) => {
+    const name = document.querySelector('#name');
+    const textError = document.querySelector('.text-error');
+    name.addEventListener('input', function () {
+        if (name.value.length == 0) {
+            textError.textContent = "";
+            return;
+        }
+        try {
+            (new EmployeePayrollData().name) = name.value;
+            textError.textContent = "";
+        } catch (e) {
+            textError.textContent = e;
+        }
+    });
+    const salary = document.querySelector('#salary');
+    const output = document.querySelector('.salary-output');
     output.textContent = salary.value;
-};
+    salary.addEventListener('input', function () {
+        output.textContent = salary.value;
+    });
+});
 class EmployeePayrollData {
 
     get id() {
@@ -21,10 +38,10 @@ class EmployeePayrollData {
             this._name = name;
         } else throw "Name is Incorrect!";
     }
-    get profilePic(){
+    get profilePic() {
         return this._profilePic;
     }
-    set profilePic(profilePic){
+    set profilePic(profilePic) {
         this._profilePic = profilePic;
     }
 
@@ -41,10 +58,10 @@ class EmployeePayrollData {
     set gender(gender) {
         this._gender = gender;
     }
-    get note(){
+    get note() {
         return this._note;
     }
-    set note(note){
+    set note(note) {
         this._note = note;
     }
 
@@ -67,7 +84,7 @@ class EmployeePayrollData {
         const employeeDate = !this.startDate ? "undefined" :
             this.startDate.toLocaleDateString("en-US", options);
         return "[ id: " + this.id + ", name: " + this.name + ", salary: " + this.salary +
-            ", profilePic: " + this.profilePic + ", gender: " + this.gender + ", startDate: " + employeeDate + ", departments: " + this.departments + ", note: " + this.note +" ]";
+            ", profilePic: " + this.profilePic + ", gender: " + this.gender + ", startDate: " + employeeDate + ", departments: " + this.departments + ", note: " + this.note + " ]";
     }
 }
 
