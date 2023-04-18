@@ -16,7 +16,10 @@ class EmployeePayrollData {
         return this._name;
     }
     set name(name) {
-        this._name = name;
+        const NAME_REGEX = RegExp("^[A-Z]{1}[A-Za-z]{2,}$");
+        if (NAME_REGEX.test(name)) {
+            this._name = name;
+        } else throw "Name is Incorrect!";
     }
 
     get salary() {
