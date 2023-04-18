@@ -90,6 +90,7 @@ class EmployeePayrollData {
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        createEmployeePayrollStorage(employeePayrollData);
     } catch (e) {
         return;
     }
@@ -128,3 +129,14 @@ const getInputValueByID = (Id) => {
     let value = document.querySelector(Id).value;
     return value;
 };
+function createAndUpdateStorage (employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+
+    if(employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    } else {
+        employeePayrollList = [employeePayrollData]
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+}
