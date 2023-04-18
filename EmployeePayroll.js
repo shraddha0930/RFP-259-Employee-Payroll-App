@@ -21,6 +21,12 @@ class EmployeePayrollData {
             this._name = name;
         } else throw "Name is Incorrect!";
     }
+    get profilePic(){
+        return this._profilePic;
+    }
+    set profilePic(profilePic){
+        this._profilePic = profilePic;
+    }
 
     get salary() {
         return this._salary;
@@ -34,6 +40,12 @@ class EmployeePayrollData {
     }
     set gender(gender) {
         this._gender = gender;
+    }
+    get note(){
+        return this._note;
+    }
+    set note(note){
+        this._note = note;
     }
 
     get startDate() {
@@ -55,7 +67,7 @@ class EmployeePayrollData {
         const employeeDate = !this.startDate ? "undefined" :
             this.startDate.toLocaleDateString("en-US", options);
         return "[ id: " + this.id + ", name: " + this.name + ", salary: " + this.salary +
-            ", gender: " + this.gender + ", startDate: " + employeeDate + ", departments: " + this.departments + " ]" + "\n";
+            ", profilePic: " + this.profilePic + ", gender: " + this.gender + ", startDate: " + employeeDate + ", departments: " + this.departments + ", note: " + this.note +" ]";
     }
 }
 
